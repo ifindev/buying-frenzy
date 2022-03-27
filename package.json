@@ -1,0 +1,31 @@
+{
+  "name": "buying-frenzy",
+  "version": "0.0.1",
+  "description": "A backend service and a database for a food delivery platform.",
+  "main": "./src/server.ts",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ifindev/buying-frenzy.git"
+  },
+  "keywords": [
+    "buying-frenzy",
+    "koajs",
+    "typescript",
+    "rest-api"
+  ],
+  "author": "Muhammad Arifin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ifindev/buying-frenzy/issues"
+  },
+  "homepage": "https://github.com/ifindev/buying-frenzy#readme",
+  "devDependencies": {
+    "typescript": "^4.6.3"
+  }
+}
