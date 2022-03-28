@@ -11,7 +11,7 @@ describe('Sample Test', () => {
 	describe('Comparing deep equality', () => {
 		it('should check deep equality', () => {
 			const result = { a: 1 }
-			expect(result).to.equal({ a: 2 })
+			expect(result).to.deep.equal({ a: 1 })
 		})
 	})
 })
