@@ -36,5 +36,12 @@ describe('Time Processor Modules', () => {
 
 			done()
 		})
+
+		it('Should throw an error if time input is not formatted as HH:MM', (done) => {
+			const invalidInput = '01PM'
+
+			expect(() => cvtTimeToMinutes(invalidInput)).to.throw()
+			done()
+		})
 	})
 })
