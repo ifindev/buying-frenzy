@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import { errMessages } from '../../src/constants/errorMessages'
-import { cvtTimeToMinutes } from '../../src/db/etl/modules/timeProcess'
+import { cvtTimeToMinutes, cvtMinutesToTime } from '../../src/db/etl/modules/timeProcess'
 
 describe('Time Processor Modules', () => {
 	describe('Convert time of 24-hours HH:MM to integer minutes past midnight', () => {
@@ -41,6 +41,31 @@ describe('Time Processor Modules', () => {
 			const invalidInput = '01PM'
 
 			expect(() => cvtTimeToMinutes(invalidInput)).to.throw()
+			done()
+		})
+	})
+
+	describe('Convert time from minutes past midnight into HH:MM of 24-hours', () => {
+		it('Should return time in HH:MM of 24-hours format', (done) => {
+			// Input params
+			const input1 = 60
+			const input2 = 105
+			const input3 = 1223
+
+			// Expected output
+			const output1 = '01:00'
+			const output2 = '01:45'
+			const output3 = '20:23'
+
+			// Exec functions
+			const res1 = cvtMinutesToTime(input1)
+			const res2 = cvtMinutesToTime(input2)
+			const res3 = cvtMinutesToTime(input3)
+
+			// Run tests
+			expect(res1).to.equal(output1)
+			expect(res2).to.equal(output2)
+			expect(res3).to.equal(output3)
 			done()
 		})
 	})
