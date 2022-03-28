@@ -25,4 +25,8 @@ function cvtTimeToMinutes(time: string): number {
 	return timeMinutes
 }
 
-export { cvtTimeToMinutes }
+function cvtMinutesToTime(timeMinutes: number): string {
+	return ''
+}
+
+export { cvtTimeToMinutes, cvtMinutesToTime }
