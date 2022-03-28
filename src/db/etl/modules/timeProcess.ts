@@ -6,7 +6,7 @@ import { errMessages } from '../../../constants/errorMessages'
  *
  * @param time (string): time in 24-hours base with HH:MM format
  */
-export default function cvtTimeToMinutes(time: string): number {
+function cvtTimeToMinutes(time: string): number {
 	// Check Data
 	const check = time.includes(':') && time.length > 2
 	if (!check) {
@@ -24,3 +24,5 @@ export default function cvtTimeToMinutes(time: string): number {
 	// return
 	return timeMinutes
 }
+
+export { cvtTimeToMinutes }

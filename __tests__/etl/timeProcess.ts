@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import { errMessages } from '../../src/constants/errorMessages'
-import cvtTimeToMinutes from '../../src/db/etl/modules/timeProcess'
+import { cvtTimeToMinutes } from '../../src/db/etl/modules/timeProcess'
 
 describe('Time Processor Modules', () => {
 	describe('Convert time of 24-hours HH:MM to integer minutes past midnight', () => {
