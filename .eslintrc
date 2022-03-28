@@ -7,7 +7,9 @@
 	},
 	"rules": {
 		"no-console": "off",
-		"@typescript-eslint/semi": ["error", "never"]
+		"no-tabs": "off",
+		"@typescript-eslint/semi": ["error", "never"],
+		" @typescript-eslint/indent": ["never"]
 	},
 	"parserOptions": { "project": ["tsconfig.json"] }
 }
