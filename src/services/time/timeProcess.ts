@@ -1,23 +1,54 @@
 import { errMessages } from '../../constants/errorMessages'
 
 function cvtTimeFromAMPM(time: string): string {
-	const result = ''
-
-	const validTime = time.toLowerCase().includes('am') || time.toLowerCase().includes('pm')
-	if (!validTime) {
-		throw new Error(errMessages.ErrConvertTimeFromAMPM)
+	const validData = time.toLowerCase().includes('am') || time.toLowerCase().includes('pm')
+	if (!validData) {
+		throw new Error('Error! Parameter time should be followed by AM/am or PM/pm identification.')
 	}
 
 	// Get time Hours, Minutes, and AM/PM
-	let hhmm = [...time.matchAll(/\d*(:)?(\d+)/g)].map((i) => i[0])[0]
+	let hourData = [...time.matchAll(/\d*(:)?(\d+)/g)].map((i) => i[0])[0]
+	const hourUnit = [...time.toLowerCase().matchAll(/(am|pm)+/g)].map((i) => i[0])[0]
 
-	// Get hour & number of data in hhmm
-	const hour = parseInt(hhmm.split(':')[0])
-	if (hour > 12) {
-		throw new Error(errMessages.ErrInputHourLargerThan12)
+	const splitTime = hourData.split(':')
+	const tempValueLen = splitTime.length
+	const tempHour = parseInt(splitTime[0])
+	const tempMinute = tempValueLen === 2 ? parseInt(splitTime[1]) : 0
+
+	if (tempHour < 0 || tempHour > 12 || tempMinute < 0 || tempMinute > 59) {
+		throw new Error(
+			'Error. Input hour should be in range of 0-12 and minutes should be in range of 0-59'
+		)
 	}
 
-	return result
+	let finalTime = ''
+
+	if (hourUnit === 'am') {
+		if (tempHour < 10 && tempMinute < 10) {
+			finalTime = `0${tempHour}:0${tempMinute}`
+		} else if (tempHour < 10 && tempMinute >= 10) {
+			finalTime = `0${tempHour}:${tempMinute}`
+		} else if (tempHour >= 10 && tempHour !== 12 && tempMinute < 10) {
+			finalTime = `${tempHour}:0${tempMinute}`
+		} else if (tempHour >= 10 && tempHour !== 12 && tempMinute >= 10) {
+			finalTime = `${tempHour}:${tempMinute}`
+		} else if (tempHour === 12 && tempMinute < 10) {
+			finalTime = `00:0${tempMinute}`
+		} else {
+			finalTime = `00:${tempMinute}`
+		}
+	} else {
+		const pmHour = tempHour === 12 ? tempHour : `${tempHour + 12}`
+		if (tempMinute < 10) {
+			finalTime = `${pmHour}:0${tempMinute}`
+		} else {
+			finalTime = `${pmHour}:${tempMinute}`
+		}
+	}
+
+	console.log(finalTime)
+
+	return finalTime
 }
 
 /**
