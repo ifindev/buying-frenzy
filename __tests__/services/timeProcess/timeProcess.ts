@@ -111,16 +111,32 @@ describe('Time Processor Modules', () => {
 			done()
 		})
 
+		it('Should throw an Error if hour input is larger than 12 and not throw if less than 12', (done) => {
+			const input1 = '13:43 PM'
+			const input2 = '18:59 PM'
+			const input3 = '06:50 PM'
+
+			// test
+			const test1 = () => cvtTimeFromAMPM(input1)
+			const test2 = () => cvtTimeFromAMPM(input2)
+			const test3 = () => cvtTimeFromAMPM(input3)
+
+			// Check test
+			expect(test1).to.throw()
+			expect(test2).to.throw()
+			expect(test3).to.not.throw()
+
+			done()
+		})
+
 		it('Should return hours < 12 if time is in AM', (done) => {
 			const input1 = '08:43 AM'
 			const input2 = '09:37 AM'
 		})
 
-		it('Should return hours > 12 if time is in PM', (done) => {})
-
 		it('Should throw an Error if minute input is larger than 59', (done) => {})
 
-		it('Should throw an Error if hour input is larger than 12', (done) => {})
+		it('Should return hours > 12 if time is in PM', (done) => {})
 
 		it('Should return converted time in HH:MM of length 5 characters', (done) => {})
 	})
