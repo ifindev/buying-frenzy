@@ -1,5 +1,12 @@
 import { errMessages } from '../../constants/errorMessages'
 
+/**
+ * @description Function to convert time of 12h format to 24h format
+ *
+ *
+ * @param time (string) : Time in 12h AM/PM such as 1PM, 3:02AM, or 12:51AM
+ * @returns finalTime (string) : Converted time in 24h format such as 13:12, 01:30
+ */
 function cvtTimeFromAMPM(time: string): string {
 	const validData = time.toLowerCase().includes('am') || time.toLowerCase().includes('pm')
 	if (!validData) {
