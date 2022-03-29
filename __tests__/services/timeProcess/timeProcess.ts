@@ -129,15 +129,79 @@ describe('Time Processor Modules', () => {
 			done()
 		})
 
+		it('Should return converted time value in HH:MM format with length of 5 characters', (done) => {
+			const input1 = '4:01 PM'
+			const input2 = '1:59 AM'
+			const input3 = '2 PM'
+			const input4 = '02 PM'
+
+			// test
+			const out1 = cvtTimeFromAMPM(input1)
+			const out2 = cvtTimeFromAMPM(input2)
+			const out3 = cvtTimeFromAMPM(input3)
+			const out4 = cvtTimeFromAMPM(input4)
+
+			// Check test
+			expect(out1).to.have.lengthOf(5)
+			expect(out2).to.have.lengthOf(5)
+			expect(out3).to.have.lengthOf(5)
+			expect(out4).to.have.lengthOf(5)
+
+			done()
+		})
+
 		it('Should return hours < 12 if time is in AM', (done) => {
 			const input1 = '08:43 AM'
 			const input2 = '09:37 AM'
+
+			const output1 = '08:43'
+			const output2 = '09:37'
+
+			const result1 = cvtTimeFromAMPM(input1)
+			const result2 = cvtTimeFromAMPM(input2)
+
+			expect(result1).to.equal(output1)
+			expect(result2).to.equal(output2)
+
+			done()
 		})
 
-		it('Should throw an Error if minute input is larger than 59', (done) => {})
+		it('Should throw an Error if minute input is larger than 59', (done) => {
+			const input1 = '08:62 AM'
+			expect(() => cvtTimeFromAMPM(input1)).to.throw()
+			done()
+		})
 
-		it('Should return hours > 12 if time is in PM', (done) => {})
+		it('Should return hours > 12 if time is in PM', (done) => {
+			const input1 = '08:43 PM'
+			const input2 = '09:37 PM'
 
-		it('Should return converted time in HH:MM of length 5 characters', (done) => {})
+			const output1 = '20:43'
+			const output2 = '21:37'
+
+			const result1 = cvtTimeFromAMPM(input1)
+			const result2 = cvtTimeFromAMPM(input2)
+
+			expect(result1).to.equal(output1)
+			expect(result2).to.equal(output2)
+
+			done()
+		})
+
+		it('Should return a normal HH:MM time for hour-only input', (done) => {
+			const input1 = '1 PM'
+			const input2 = '03 AM'
+
+			const output1 = '13:00'
+			const output2 = '03:00'
+
+			const result1 = cvtTimeFromAMPM(input1)
+			const result2 = cvtTimeFromAMPM(input2)
+
+			expect(result1).to.equal(output1)
+			expect(result2).to.equal(output2)
+
+			done()
+		})
 	})
 })
