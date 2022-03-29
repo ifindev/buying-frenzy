@@ -2,6 +2,12 @@ import { errMessages } from '../../constants/errorMessages'
 
 function cvtTimeFromAMPM(time: string): string {
 	const result = ''
+
+	const validTime = time.toLowerCase().includes('am') || time.toLowerCase().includes('pm')
+	if (!validTime) {
+		throw new Error('Error! Parameter time should includes AM/am or PM/pm identification')
+	}
+
 	return result
 }
 
