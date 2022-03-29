@@ -1,38 +1,56 @@
-interface MenuRaw {
+//  Type Aliases
+type MenuId = number
+type MenuName = string
+type RestaurantId = number
+type RestaurantName = string
+
+// Interfaces
+interface IRawMenu {
 	dishName: string
 	price: number
 }
 
-interface RawRestaurant {
+interface IRawRestaurant {
+	restaurantName: string
 	cashBalance: number
 	openingHours: string
-	restaurantName: string
-	menu: MenuRaw
+	menu: IRawMenu[]
 }
 
-interface Restaurant {
+interface IRestaurant {
 	restaurantId: number
 	restaurantName: string
 	cashBalance: number
 }
 
-interface Menu {
+interface IWorkingHours {
+	restaurantId: number
+	dayOfWeek: number
+	openingHour: number
+	closingHour: number
+}
+
+interface IMenu {
 	menuId: number
 	dishname: string
 }
 
-interface RestaurantMenu {
+interface IRestaurantMenu {
 	restaurantMenuId: number
 	restaurantId: number
 	menuId: number
 	price: number
 }
 
-interface OpeningHours {
-	restaurantId: number
-	dayOfWeek: number
-	openTime: number
-	closeTime: number
+export {
+	MenuId,
+	MenuName,
+	RestaurantId,
+	RestaurantName,
+	IRawMenu,
+	IRawRestaurant,
+	IRestaurant,
+	IWorkingHours,
+	IMenu,
+	IRestaurantMenu
 }
-
-export { MenuRaw, RawRestaurant, Restaurant, Menu, RestaurantMenu, OpeningHours }
