@@ -89,5 +89,20 @@ describe('Time Processor Modules', () => {
 			expect(() => cvtTimeFromAMPM(input)).to.throw()
 			done()
 		})
+
+		it('Should not throw error if input time have either uppercase AM/PM or lowecase am/pm', (done) => {})
+
+		it('Should return hours < 12 if time is in AM', (done) => {
+			const input1 = '08:43 AM'
+			const input2 = '09:37 AM'
+		})
+
+		it('Should return hours > 12 if time is in PM', (done) => {})
+
+		it('Should throw an Error if minute input is larger than 59', (done) => {})
+
+		it('Should throw an Error if hour input is larger than 12', (done) => {})
+
+		it('Should return converted time in HH:MM of length 5 characters', (done) => {})
 	})
 })
