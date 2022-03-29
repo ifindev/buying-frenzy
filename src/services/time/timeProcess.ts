@@ -5,7 +5,7 @@ function cvtTimeFromAMPM(time: string): string {
 
 	const validTime = time.toLowerCase().includes('am') || time.toLowerCase().includes('pm')
 	if (!validTime) {
-		throw new Error('Error! Parameter time should includes AM/am or PM/pm identification')
+		throw new Error(errMessages.ErrConvertTimeFromAMPM)
 	}
 
 	return result
