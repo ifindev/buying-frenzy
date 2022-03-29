@@ -90,7 +90,26 @@ describe('Time Processor Modules', () => {
 			done()
 		})
 
-		it('Should not throw error if input time have either uppercase AM/PM or lowecase am/pm', (done) => {})
+		it('Should not throw error if input time have either uppercase AM/PM or lowecase am/pm', (done) => {
+			// Inputs
+			const input1 = '08:43 AM'
+			const input2 = '08:43 am'
+			const input3 = '09:37 PM'
+			const input4 = '09:37 pm'
+
+			// Tests
+			const test1 = () => cvtTimeFromAMPM(input1)
+			const test2 = () => cvtTimeFromAMPM(input2)
+			const test3 = () => cvtTimeFromAMPM(input3)
+			const test4 = () => cvtTimeFromAMPM(input4)
+
+			// Check test
+			expect(test1).to.not.throw()
+			expect(test2).to.not.throw()
+			expect(test3).to.not.throw()
+			expect(test4).to.not.throw()
+			done()
+		})
 
 		it('Should return hours < 12 if time is in AM', (done) => {
 			const input1 = '08:43 AM'
