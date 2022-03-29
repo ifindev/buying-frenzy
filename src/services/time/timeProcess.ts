@@ -46,8 +46,6 @@ function cvtTimeFromAMPM(time: string): string {
 		}
 	}
 
-	console.log(finalTime)
-
 	return finalTime
 }
 
