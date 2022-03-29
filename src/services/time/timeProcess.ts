@@ -8,6 +8,15 @@ function cvtTimeFromAMPM(time: string): string {
 		throw new Error(errMessages.ErrConvertTimeFromAMPM)
 	}
 
+	// Get time Hours, Minutes, and AM/PM
+	let hhmm = [...time.matchAll(/\d*(:)?(\d+)/g)].map((i) => i[0])[0]
+
+	// Get hour & number of data in hhmm
+	const hour = parseInt(hhmm.split(':')[0])
+	if (hour > 12) {
+		throw new Error(errMessages.ErrInputHourLargerThan12)
+	}
+
 	return result
 }
 
