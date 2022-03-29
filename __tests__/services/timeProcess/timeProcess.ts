@@ -1,5 +1,9 @@
 import { expect } from 'chai'
-import { cvtTimeToMinutes, cvtMinutesToTime } from '../../../src/services/time/timeProcess'
+import {
+	cvtTimeToMinutes,
+	cvtMinutesToTime,
+	cvTimeFromAMPM
+} from '../../../src/services/time/timeProcess'
 
 describe('Time Processor Modules', () => {
 	describe('Convert time of 24-hours HH:MM to integer minutes past midnight', () => {
@@ -75,6 +79,14 @@ describe('Time Processor Modules', () => {
 		it('Should throw an error if minutes to be converted is >= 1440 minutes', (done) => {
 			const input = 1440
 			expect(() => cvtMinutesToTime(input)).to.throw()
+			done()
+		})
+	})
+
+	describe('Convert time from 12-h AM/PM into 24-h HH:MM', () => {
+		it('Should throw an error if input time have no AM/PM or am/pm', (done) => {
+			const input = '01:10'
+			expect(() => cvTimeFromAMPM(input)).to.throw()
 			done()
 		})
 	})
