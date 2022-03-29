@@ -1,6 +1,6 @@
 import { errMessages } from '../../constants/errorMessages'
 
-function cvTimeFromAMPM(time: string): string {
+function cvtTimeFromAMPM(time: string): string {
 	const result = ''
 	return result
 }
@@ -55,4 +55,4 @@ function cvtMinutesToTime(timeMinutes: number): string {
 	return hhmm
 }
 
-export { cvtTimeToMinutes, cvtMinutesToTime, cvTimeFromAMPM }
+export { cvtTimeToMinutes, cvtMinutesToTime, cvtTimeFromAMPM }

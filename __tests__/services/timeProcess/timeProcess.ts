@@ -2,7 +2,7 @@ import { expect } from 'chai'
 import {
 	cvtTimeToMinutes,
 	cvtMinutesToTime,
-	cvTimeFromAMPM
+	cvtTimeFromAMPM
 } from '../../../src/services/time/timeProcess'
 
 describe('Time Processor Modules', () => {
@@ -86,7 +86,7 @@ describe('Time Processor Modules', () => {
 	describe('Convert time from 12-h AM/PM into 24-h HH:MM', () => {
 		it('Should throw an error if input time have no AM/PM or am/pm', (done) => {
 			const input = '01:10'
-			expect(() => cvTimeFromAMPM(input)).to.throw()
+			expect(() => cvtTimeFromAMPM(input)).to.throw()
 			done()
 		})
 	})
