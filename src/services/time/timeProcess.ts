@@ -1,6 +1,12 @@
 import { errMessages } from '../../constants/errorMessages'
 
+function cvTimeFromAMPM(time: string): string {
+	const result = ''
+	return result
+}
+
 /**
+ * @description
  * Function to convert HH:MM (24-h) time
  * into total minutes after midnight
  *
@@ -27,6 +33,7 @@ function cvtTimeToMinutes(time: string): number {
 }
 
 /**
+ * @description
  * Function to convert time from minutes past
  * midnight format into 24-h HH:MM
  *
@@ -48,4 +55,4 @@ function cvtMinutesToTime(timeMinutes: number): string {
 	return hhmm
 }
 
-export { cvtTimeToMinutes, cvtMinutesToTime }
+export { cvtTimeToMinutes, cvtMinutesToTime, cvTimeFromAMPM }
