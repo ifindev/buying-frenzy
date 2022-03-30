@@ -207,7 +207,7 @@ describe('Time Processor Modules', () => {
 	})
 
 	describe('Convert day of week to integer number equivalent', () => {
-		const days = ['Sunday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+		const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 		const daysIntEq = [1, 2, 3, 4, 5, 6, 7]
 
 		it('Should throw error if day input is not in English language of Monday through Sunday', (done) => {
@@ -233,13 +233,13 @@ describe('Time Processor Modules', () => {
 		})
 
 		it('Should return day of week as an integer number between 1-7', (done) => {
-			expect(cvtDayOfWeekToInt(days[0])).to.be.greaterThan(0).and.to.be.lessThan(7)
-			expect(cvtDayOfWeekToInt(days[1])).to.be.greaterThan(0).and.to.be.lessThan(7)
-			expect(cvtDayOfWeekToInt(days[2])).to.be.greaterThan(0).and.to.be.lessThan(7)
-			expect(cvtDayOfWeekToInt(days[3])).to.be.greaterThan(0).and.to.be.lessThan(7)
-			expect(cvtDayOfWeekToInt(days[4])).to.be.greaterThan(0).and.to.be.lessThan(7)
-			expect(cvtDayOfWeekToInt(days[5])).to.be.greaterThan(0).and.to.be.lessThan(7)
-			expect(cvtDayOfWeekToInt(days[6])).to.be.greaterThan(0).and.to.be.lessThan(7)
+			expect(cvtDayOfWeekToInt(days[0])).to.be.greaterThan(0).and.to.be.lessThanOrEqual(7)
+			expect(cvtDayOfWeekToInt(days[1])).to.be.greaterThan(0).and.to.be.lessThanOrEqual(7)
+			expect(cvtDayOfWeekToInt(days[2])).to.be.greaterThan(0).and.to.be.lessThanOrEqual(7)
+			expect(cvtDayOfWeekToInt(days[3])).to.be.greaterThan(0).and.to.be.lessThanOrEqual(7)
+			expect(cvtDayOfWeekToInt(days[4])).to.be.greaterThan(0).and.to.be.lessThanOrEqual(7)
+			expect(cvtDayOfWeekToInt(days[5])).to.be.greaterThan(0).and.to.be.lessThanOrEqual(7)
+			expect(cvtDayOfWeekToInt(days[6])).to.be.greaterThan(0).and.to.be.lessThanOrEqual(7)
 
 			done()
 		})
