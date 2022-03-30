@@ -2,7 +2,8 @@ import { expect } from 'chai'
 import {
 	cvtTimeToMinutes,
 	cvtMinutesToTime,
-	cvtTimeFromAMPM
+	cvtTimeFromAMPM,
+	cvtDayOfWeekToInt
 } from '../../../src/services/time/timeProcess'
 
 describe('Time Processor Modules', () => {
@@ -200,6 +201,57 @@ describe('Time Processor Modules', () => {
 
 			expect(result1).to.equal(output1)
 			expect(result2).to.equal(output2)
+
+			done()
+		})
+	})
+
+	describe('Convert day of week to integer number equivalent', () => {
+		const days = ['Sunday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+		const daysIntEq = [1, 2, 3, 4, 5, 6, 7]
+
+		it('Should throw error if day input is not in English language of Monday through Sunday', (done) => {
+			const input1 = 'Senin'
+			const input2 = 'Selasa'
+
+			expect(() => cvtDayOfWeekToInt(input1)).to.throw()
+			expect(() => cvtDayOfWeekToInt(input2)).to.throw()
+
+			done()
+		})
+
+		it('Should not throw error if day input is in English language of Monday through Sunday', (done) => {
+			expect(() => cvtDayOfWeekToInt(days[0])).to.not.throw()
+			expect(() => cvtDayOfWeekToInt(days[1])).to.not.throw()
+			expect(() => cvtDayOfWeekToInt(days[2])).to.not.throw()
+			expect(() => cvtDayOfWeekToInt(days[3])).to.not.throw()
+			expect(() => cvtDayOfWeekToInt(days[4])).to.not.throw()
+			expect(() => cvtDayOfWeekToInt(days[5])).to.not.throw()
+			expect(() => cvtDayOfWeekToInt(days[6])).to.not.throw()
+
+			done()
+		})
+
+		it('Should return day of week as an integer number between 1-7', (done) => {
+			expect(cvtDayOfWeekToInt(days[0])).to.be.greaterThan(0).and.to.be.lessThan(7)
+			expect(cvtDayOfWeekToInt(days[1])).to.be.greaterThan(0).and.to.be.lessThan(7)
+			expect(cvtDayOfWeekToInt(days[2])).to.be.greaterThan(0).and.to.be.lessThan(7)
+			expect(cvtDayOfWeekToInt(days[3])).to.be.greaterThan(0).and.to.be.lessThan(7)
+			expect(cvtDayOfWeekToInt(days[4])).to.be.greaterThan(0).and.to.be.lessThan(7)
+			expect(cvtDayOfWeekToInt(days[5])).to.be.greaterThan(0).and.to.be.lessThan(7)
+			expect(cvtDayOfWeekToInt(days[6])).to.be.greaterThan(0).and.to.be.lessThan(7)
+
+			done()
+		})
+
+		it('Should return dayOfInt starting from 1 for Monday and end at 7 for Sunday', (done) => {
+			expect(cvtDayOfWeekToInt(days[0])).to.equal(daysIntEq[0])
+			expect(cvtDayOfWeekToInt(days[1])).to.equal(daysIntEq[1])
+			expect(cvtDayOfWeekToInt(days[2])).to.equal(daysIntEq[2])
+			expect(cvtDayOfWeekToInt(days[3])).to.equal(daysIntEq[3])
+			expect(cvtDayOfWeekToInt(days[4])).to.equal(daysIntEq[4])
+			expect(cvtDayOfWeekToInt(days[5])).to.equal(daysIntEq[5])
+			expect(cvtDayOfWeekToInt(days[6])).to.equal(daysIntEq[6])
 
 			done()
 		})
