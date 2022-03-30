@@ -108,15 +108,25 @@ function cvtMinutesToTime(timeMinutes: number): string {
 
 function cvtDayOfWeekToInt(day: string): number {
 	const dayOfWeek = [
-		{ id: 1, day: 'mo' },
+		{ id: 1, day: 'mon' },
 		{ id: 2, day: 'tue' },
-		{ id: 3, day: 'we' },
-		{ id: 4, day: 'th' },
-		{ id: 5, day: 'fr' },
-		{ id: 6, day: 'sa' },
-		{ id: 7, day: 'su' }
+		{ id: 3, day: 'wed' },
+		{ id: 4, day: 'thu' },
+		{ id: 5, day: 'fri' },
+		{ id: 6, day: 'sat' },
+		{ id: 7, day: 'sun' }
 	]
-	return 0
+
+	const validData = dayOfWeek.findIndex((el) => day.toLowerCase().includes(el.day))
+	if (validData === -1) {
+		throw new Error(
+			'Invalid day data! Day value should be written in English between Sunday & Monday'
+		)
+	}
+
+	const intDay = dayOfWeek[validData].id
+
+	return intDay
 }
 
 export { cvtTimeToMinutes, cvtMinutesToTime, cvtTimeFromAMPM, cvtDayOfWeekToInt }
