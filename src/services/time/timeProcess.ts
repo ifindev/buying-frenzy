@@ -106,4 +106,17 @@ function cvtMinutesToTime(timeMinutes: number): string {
 	return hhmm
 }
 
-export { cvtTimeToMinutes, cvtMinutesToTime, cvtTimeFromAMPM }
+function cvtDayOfWeekToInt(day: string): number {
+	const dayOfWeek = [
+		{ id: 1, day: 'mo' },
+		{ id: 2, day: 'tue' },
+		{ id: 3, day: 'we' },
+		{ id: 4, day: 'th' },
+		{ id: 5, day: 'fr' },
+		{ id: 6, day: 'sa' },
+		{ id: 7, day: 'su' }
+	]
+	return 0
+}
+
+export { cvtTimeToMinutes, cvtMinutesToTime, cvtTimeFromAMPM, cvtDayOfWeekToInt }
