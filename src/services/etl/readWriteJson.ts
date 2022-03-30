@@ -1,5 +1,11 @@
 import * as fs from 'fs'
 
+/**
+ * @description Function for reading json file in the given filepath
+ *
+ * @param filePath (string) : directory + filename
+ * @returns Promise (TReturn) : Return promised data with TReturn type
+ */
 function readJsonFile<TReturn>(filePath: string): Promise<TReturn> {
 	return new Promise((resolve, reject) => {
 		if (!filePath.includes('.json')) {
@@ -22,6 +28,16 @@ function readJsonFile<TReturn>(filePath: string): Promise<TReturn> {
 		}
 	})
 }
+
+/**
+ * @description Function to write json data into an output file directory
+ *
+ *
+ * @param filepath (string): Absolute filepath directory
+ * @param filename (string): Filename of the output file
+ * @param jsonString (string): Stringified json data
+ * @returns Promise (string) : Promise with success message if success
+ */
 
 function writeJsonFile(filepath: string, filename: string, jsonString: string): Promise<string> {
 	return new Promise((resolve, reject) => {
