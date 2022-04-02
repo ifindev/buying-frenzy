@@ -42,6 +42,11 @@ interface IRestaurantMenu {
 	price: number
 }
 
+interface IRestoWithWorkingHours {
+	restoData: IRestaurant[]
+	workingHours: IWorkingHours[]
+}
+
 export {
 	MenuId,
 	MenuName,
@@ -52,5 +57,6 @@ export {
 	IRestaurant,
 	IWorkingHours,
 	IMenu,
-	IRestaurantMenu
+	IRestaurantMenu,
+	IRestoWithWorkingHours
 }
