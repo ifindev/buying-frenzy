@@ -7,7 +7,12 @@ import {
 	IRestaurant,
 	IWorkingHours,
 	IMenu,
-	IRestaurantMenu
+	IRestaurantMenu,
+	IRestoWithWorkingHours,
+	RestaurantName,
+	RestaurantId,
+	MenuName,
+	MenuId
 } from '../../types/restaurant.types'
 
 /**
@@ -64,6 +69,16 @@ function normalizeWorkingHoursData(restoId: number, day: string, time: string[])
  */
 function extractWorkingHoursData(restoId: number, wh: string): IWorkingHours[] {
 	const workingHours: IWorkingHours[] = []
+
+	wh.split('/').forEach((dat) => {
+		const day = [...dat.matchAll(/[A-Z][a-z]+/g)].map((i) => i[0])
+		const time = [...dat.matchAll(/\d+(:\d+)?\s*(am|pm)?/g)].map((i) => i[0])
+
+		day.forEach((d) => {
+			const normalized = normalizeWorkingHoursData(restoId, d, time)
+			workingHours.push(normalized)
+		})
+	})
 
 	return workingHours
 }
