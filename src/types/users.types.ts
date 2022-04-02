@@ -1,23 +1,23 @@
-type TRawPurchaseHistory = {
+interface IRawPurchaseHistory {
 	dishname: string
 	restaurantName: string
 	transactionAmount: number
 	transactionDate: string
 }
 
-type TRawUser = {
+interface IRawUser {
 	id: number
 	name: string
-	purchaseHistory: TRawPurchaseHistory
+	purchaseHistory: IRawPurchaseHistory
 }
 
-type TUser = {
+interface IUser {
 	userId: number
 	name: string
 	cashBalance: number
 }
 
-type TPurchaseHistory = {
+interface IPurchaseHistory {
 	purchaseHistoryId: number
 	restaurantMenuId: number
 	userId: number
@@ -25,4 +25,4 @@ type TPurchaseHistory = {
 	transactionDate: string
 }
 
-export { TRawPurchaseHistory, TRawUser, TUser, TPurchaseHistory }
+export { IRawPurchaseHistory, IRawUser, IUser, IPurchaseHistory }
