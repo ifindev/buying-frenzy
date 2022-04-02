@@ -83,4 +83,42 @@ function extractWorkingHoursData(restoId: number, wh: string): IWorkingHours[] {
 	return workingHours
 }
 
-export { extractWorkingHoursData, normalizeWorkingHoursData }
+/**
+ * @description Function to extract and transform raw restaurant data
+ *
+ * @param data : Array of restaurant data object containing restaurantName, cashBalance, openingHours, and array of menu
+ * @returns : Object containing transformed restaurants and working hours data
+ */
+function etRestaurantData(data: IRawRestaurant[]): IRestoWithWorkingHours {
+	const restoMap = new Map<RestaurantName, RestaurantId>()
+
+	let whData: IWorkingHours[] = []
+	const restoData: IRestaurant[] = []
+
+	data.forEach((resto, idx) => {
+		const restoName = resto.restaurantName.trim()
+		if (!restoMap.has(restoName)) {
+			const restoId = idx + 1
+
+			restoData.push({
+				restaurantId: restoId,
+				restaurantName: restoName,
+				cashBalance: resto.cashBalance
+			})
+
+			const wh = extractWorkingHoursData(restoId, resto.openingHours)
+			whData = [...whData, ...wh]
+
+			restoMap.set(restoName, restoId)
+		}
+	})
+
+	const transformed: IRestoWithWorkingHours = {
+		restoData: restoData,
+		workingHours: whData
+	}
+
+	return transformed
+}
+
+export { etRestaurantData, extractWorkingHoursData, normalizeWorkingHoursData }
