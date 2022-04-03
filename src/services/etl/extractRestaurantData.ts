@@ -1,6 +1,3 @@
-import { readJsonFile, writeJsonFile } from './readWriteJson'
-import { cvtDayOfWeekToInt, cvtTimeFromAMPM, cvtTimeToMinutes } from '../time/timeProcess'
-
 import {
 	IRawMenu,
 	IRawRestaurant,
@@ -14,6 +11,8 @@ import {
 	MenuName,
 	MenuId
 } from '../../types/restaurant.types'
+
+import { cvtDayOfWeekToInt, cvtTimeFromAMPM, cvtTimeToMinutes } from '../time/timeProcess'
 
 /**
  *
@@ -121,4 +120,79 @@ function etRestaurantData(data: IRawRestaurant[]): IRestoWithWorkingHours {
 	return transformed
 }
 
-export { etRestaurantData, extractWorkingHoursData, normalizeWorkingHoursData }
+/**
+ * @description : Function to get distinct menu in all the restaurants
+ *
+ * @param rawResto : Restaurant raw data containing restaurantName, cashBalance, openingHours, and array of menu
+ * @returns : Array of menu object containing menuId and dishname
+ */
+function etAllMenuData(rawResto: IRawRestaurant[]): IMenu[] {
+	const menuMap = new Map<MenuName, MenuId>()
+
+	const menu: IMenu[] = []
+	let menuId = 0
+
+	rawResto.forEach((dat) => {
+		dat.menu.forEach((item) => {
+			const dishname = item.dishName.trim()
+			if (!menuMap.has(dishname.toLowerCase())) {
+				menuId += 1
+				menu.push({
+					menuId: menuId,
+					dishname: dishname
+				})
+				menuMap.set(dishname.toLowerCase(), menuId)
+			}
+		})
+	})
+
+	return menu
+}
+
+/**
+ * @description Function to get menu item that belongs to each restaurant
+ *
+ * @param menu : Array of transformed menu data
+ * @param resto : Array of transformed restaurant data
+ * @param rawResto : Array of raw restaurant data
+ * @returns : Array of menu item mapped to each restaurant and menu list
+ */
+function etRestaurantMenuData(
+	menu: IMenu[],
+	resto: IRestaurant[],
+	rawResto: IRawRestaurant[]
+): IRestaurantMenu[] {
+	let id = 0
+	const restoMenu: IRestaurantMenu[] = []
+
+	rawResto.forEach((dat) => {
+		dat.menu.forEach((men) => {
+			id += 1
+			const menuItem = menu.filter(
+				(x) => x.dishname.toLowerCase().trim() === men.dishName.toLowerCase().trim()
+			)
+			const restoData = resto.filter(
+				(x) => x.restaurantName.toLowerCase().trim() === dat.restaurantName.toLowerCase().trim()
+			)
+
+			if (menuItem.length > 0 && restoData.length > 0) {
+				restoMenu.push({
+					restaurantMenuId: id,
+					restaurantId: restoData[0].restaurantId,
+					menuId: menuItem[0].menuId,
+					price: men.price
+				})
+			}
+		})
+	})
+
+	return restoMenu
+}
+
+export {
+	etAllMenuData,
+	etRestaurantData,
+	etRestaurantMenuData,
+	extractWorkingHoursData,
+	normalizeWorkingHoursData
+}
