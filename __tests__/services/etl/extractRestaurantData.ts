@@ -202,5 +202,6 @@ describe('Extract & transform raw restaurant data and working hours data', () =>
 		expect(wh[0]).to.have.property('dayOfWeek')
 		expect(wh[0]).to.have.property('openingHour')
 		expect(wh[0]).to.have.property('closingHour')
+		done()
 	})
 })
