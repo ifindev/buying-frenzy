@@ -1,0 +1,26 @@
+version: "3.6"
+services:
+  app: 
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports: 
+      - 1337:1337
+    env_file: .env
+    depends_on:
+      - db
+    command: npm start
+  db:
+    image: postgres:10.16
+    environment: 
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: buying_frenzy
+    ports:
+      - 5432:5432
+    volumes:
+      - ./src:/app
+      - db-data:/var/lib/postgresql/data
+volumes:
+  db-data:
+      
