@@ -1,5 +1,5 @@
 interface IRawPurchaseHistory {
-	dishname: string
+	dishName: string
 	restaurantName: string
 	transactionAmount: number
 	transactionDate: string
@@ -8,7 +8,8 @@ interface IRawPurchaseHistory {
 interface IRawUser {
 	id: number
 	name: string
-	purchaseHistory: IRawPurchaseHistory
+	cashBalance: number
+	purchaseHistory: IRawPurchaseHistory[]
 }
 
 interface IUser {
