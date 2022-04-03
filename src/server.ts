@@ -5,10 +5,10 @@ import * as Router from 'koa-router'
 const app = new Koa()
 const router = new Router()
 
-const PORT = 1337
+const PORT = 3001
 
 router.get('/', (ctx, next) => {
-	ctx.body = { message: 'Hello World! This is running in docker' }
+	ctx.body = { message: 'Hello World!' }
 	next()
 })
 
