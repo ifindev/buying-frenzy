@@ -7,8 +7,8 @@
 		"doc": "docs"
 	},
 	"scripts": {
-		"start": "nodemon -e ts --exec 'tsc -p ./tsconfig.json && node ./dist/server.js'",
-		"dev": "nodemon -L ./src/server.ts",
+		"start": "node dist/server.js",
+		"dev": "nodemon ./src/server.ts",
 		"build": "rm -rf dist && npx tsc",
 		"exec-etl": "ts-node ./src/db/etl/index.ts",
 		"test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register '__tests__/**/*.ts'",
