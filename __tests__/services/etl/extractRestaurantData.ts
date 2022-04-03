@@ -1,5 +1,6 @@
 import { expect, assert } from 'chai'
 import {
+	etRestaurantData,
 	extractWorkingHoursData,
 	normalizeWorkingHoursData
 } from '../../../src/services/etl/extractRestaurantData'
@@ -138,5 +139,68 @@ describe('Test the function used to normalize and extract restaurant working hou
 			expect(elm).to.have.property('closingHour')
 			done()
 		})
+	})
+})
+
+describe('Extract & transform raw restaurant data and working hours data', () => {
+	const data = [
+		{
+			cashBalance: 4483.84,
+			menu: [
+				{
+					dishName: 'Postum cereal coffee',
+					price: 13.88
+				},
+				{
+					dishName: 'GAI TOM KA: CHICKEN IN COCONUT CREAM SOUP WITH LIME JUICE GALANGA AND CHILI',
+					price: 10.64
+				}
+			],
+			openingHours:
+				'Mon, Fri 2:30 pm - 8 pm / Tues 11 am - 2 pm / Weds 1:15 pm - 3:15 am / Thurs 10 am - 3:15 am / Sat 5 am - 11:30 am / Sun 10:45 am - 5 pm',
+			restaurantName: "'Ulu Ocean Grill and Sushi Lounge"
+		},
+		{
+			cashBalance: 162.87,
+			menu: [
+				{
+					dishName: 'Olives',
+					price: 13.88
+				},
+				{
+					dishName: 'Tom Yum',
+					price: 10.64
+				}
+			],
+			openingHours:
+				'Mon, Weds 11:45 am - 4:45 pm / Tues 7:45 am - 2 am / Thurs 5:45 pm - 12 am / Fri, Sun 6 am - 9 pm / Sat 10:15 am - 9 pm',
+			restaurantName: "'Blue Plate"
+		}
+	]
+
+	const out = etRestaurantData(data)
+
+	it('Should return an object containing restoData and workingHours field', (done) => {
+		expect(out).to.have.property('restoData')
+		expect(out).to.have.property('workingHours')
+		done()
+	})
+
+	it('Should have restoData with IRestoWithWorkingHours type', (done) => {
+		const restoData = out.restoData
+
+		expect(restoData[0]).to.have.property('restaurantId')
+		expect(restoData[0]).to.have.property('restaurantName')
+		expect(restoData[0]).to.have.property('cashBalance')
+		done()
+	})
+
+	it('Should have workingHours field with element with the type of IWorkingHours', (done) => {
+		const wh = out.workingHours
+
+		expect(wh[0]).to.have.property('restaurantId')
+		expect(wh[0]).to.have.property('dayOfWeek')
+		expect(wh[0]).to.have.property('openingHour')
+		expect(wh[0]).to.have.property('closingHour')
 	})
 })
