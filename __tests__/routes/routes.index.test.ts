@@ -1,5 +1,5 @@
 import 'mocha'
-import server from '../../src/server/server'
+import server from '../../src/server'
 import * as chai from 'chai'
 import chaiHttp = require('chai-http')
 
