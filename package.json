@@ -73,6 +73,7 @@
 		"knex": "^1.0.4",
 		"koa": "^2.13.4",
 		"koa-router": "^10.1.1",
+		"koa-swagger-decorator": "^1.8.5",
 		"pg": "^8.7.3",
 		"ts-node": "^10.7.0"
 	}
