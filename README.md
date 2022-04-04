@@ -9,3 +9,9 @@ A backend service and a database for a food delivery platform. Currently, the su
 
 ## More Documentations
 To read more documentations about the project, see the `docs/` directory.
+
+## Commands
+- Creating a migration file:
+```bash
+npx knex migrate:make migrations_name --migrations-directory src/db/migrations -x ts
+```
