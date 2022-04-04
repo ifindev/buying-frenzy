@@ -11,13 +11,16 @@
 		"dev": "nodemon ./src/server.ts",
 		"build": "rm -rf dist && npx tsc",
 		"exec-etl": "ts-node ./src/db/etl/index.ts",
+		"knex:migrate": "npx knex migrate:latest --knexfile ./src/db/knexfile.ts",
+		"knex:rollback": "npx knex migrate:rollback --knexfile ./src/db/knexfile.ts",
+		"knex:rollback-all": "npx knex migrate:rollback --all --knexfile ./src/db/knexfile.ts",
 		"test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register '__tests__/**/*.ts'",
 		"lint": "npx eslint src/**/*.ts",
 		"prettier-format": "prettier --config .prettierrc 'src/**/*.ts' --write",
 		"docker-compose-down": "docker-compose -f './docker-compose.yml' down",
 		"docker-compose-up:dev": "docker-compose -f './docker-compose.yml' up -d --build app",
 		"docker-compose-up:build": "docker-compose up -d --build app",
-		"docker:dev":"npm run docker-compose-down; npm run docker-compose-up:dev; docker-compose logs -f app"
+		"docker:dev": "npm run docker-compose-down; npm run docker-compose-up:dev; docker-compose logs -f app"
 	},
 	"husky": {
 		"hooks": {
@@ -59,14 +62,18 @@
 	"dependencies": {
 		"@types/chai-fs": "^2.0.2",
 		"@types/chai-http": "^4.2.0",
+		"@types/dotenv": "^8.2.0",
+		"@types/knex": "^0.16.1",
 		"@types/koa": "^2.13.4",
 		"@types/koa-router": "^7.4.4",
 		"@types/node": "^17.0.23",
 		"chai-fs": "^2.0.0",
 		"chai-http": "^4.3.0",
 		"dotenv": "^16.0.0",
+		"knex": "^1.0.4",
 		"koa": "^2.13.4",
 		"koa-router": "^10.1.1",
+		"pg": "^8.7.3",
 		"ts-node": "^10.7.0"
 	}
 }
