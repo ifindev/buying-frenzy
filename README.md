@@ -45,7 +45,7 @@ After you've installed all the dependencies, rename the `env.example` to `.env` 
 
 #### Install & Setup Docker
 
-This project use Docker to for a PostgreSQL database support for local development and for a uniform code distribution. If you didn't have Docker installed and configured, you can go to one of this link below for guides on how to install it on your machine:
+This project use Docker for a PostgreSQL database support in local development and for a uniform code distribution. If you didn't have Docker installed and configured, you can go to one of this link below for guides on how to install it on your machine:
 
 - Mac: https://docs.docker.com/desktop/mac/install/
 - Windows: https://docs.docker.com/desktop/windows/install/
@@ -53,7 +53,11 @@ This project use Docker to for a PostgreSQL database support for local developme
 
 #### Running Docker Locally
 
-After you've installed Docker successfully, go to the root folder
+After you've installed Docker successfully, go to the root folder and run the following command to startup both application server & PostgreSQL service:
+
+```bash
+npm run docker:dev
+```
 
 <br/>
 
