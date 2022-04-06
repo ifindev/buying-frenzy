@@ -100,7 +100,7 @@ Then after that, re-running the seeding command will become succesfull.
 
 ### Running the App
 
-After succesfully setting up the docker, database migrations, and database seeding, open up `localhost:1337` on your browser to do a quick sanity check. If all goes well, you can start sending request & get response from all of the api endpoints described in the `docs/02-api-specifications.md` directory.
+After succesfully setting up the docker, database migrations, and database seeding, open up `localhost:1337` on your browser to do a quick sanity check. If all goes well, you can start sending requests & get responses from all of the api endpoints described in the `docs/02-api-specifications.md`.
 
 ### Copyright
 
