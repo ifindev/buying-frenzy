@@ -1,6 +1,6 @@
-import knex from "knex";
-import { KnexCfg } from "../configs";
+import knex from 'knex'
+import { KnexCfg } from '../configs'
 
-const dbConnect = knex(KnexCfg.config)
+const db = knex(KnexCfg.config)
 
-export default dbConnect
+export default db
