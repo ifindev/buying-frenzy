@@ -139,7 +139,7 @@ function etAllMenuData(rawResto: IRawRestaurant[]): IMenu[] {
 				menuId += 1
 				menu.push({
 					menuId: menuId,
-					dishname: dishname
+					dishname: dishname.split('-')[0]
 				})
 				menuMap.set(dishname.toLowerCase(), menuId)
 			}
