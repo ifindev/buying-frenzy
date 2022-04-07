@@ -1,4 +1,5 @@
 import { Knex } from 'knex'
+import { Database } from '../../configs'
 import { getSeedData } from '../../services/seeder/seeder'
 import { IUser } from '../../types/users.types'
 
@@ -11,10 +12,10 @@ export async function seed(knex: Knex): Promise<void> {
 		const data = await getSeedData<IUser[]>('users.json')
 
 		// Deletes ALL existing entries
-		await knex('User').del()
+		await knex(`${Database.schema}.User`).del()
 
 		// Inserts seed entries using batch insert
-		await knex.batchInsert('User', data, chunkSize)
+		await knex.batchInsert(`${Database.schema}.User`, data, chunkSize)
 
 		console.log('Seeding users data success')
 	} catch (err) {

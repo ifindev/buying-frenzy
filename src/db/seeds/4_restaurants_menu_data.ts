@@ -1,4 +1,5 @@
 import { Knex } from 'knex'
+import { Database } from '../../configs'
 import { getSeedData } from '../../services/seeder/seeder'
 import { IRestaurantMenu } from '../../types/restaurant.types'
 
@@ -11,10 +12,10 @@ export async function seed(knex: Knex): Promise<void> {
 		const data = await getSeedData<IRestaurantMenu[]>('restaurantsMenu.json')
 
 		// Deletes ALL existing entries
-		await knex('RestaurantMenu').del()
+		await knex(`${Database.schema}.RestaurantMenu`).del()
 
 		// Inserts seed entries using batch insert
-		await knex.batchInsert('RestaurantMenu', data, chunkSize)
+		await knex.batchInsert(`${Database.schema}.RestaurantMenu`, data, chunkSize)
 
 		console.log('Seeding restaurant menu data success')
 	} catch (err) {

@@ -1,4 +1,5 @@
 import { Knex } from 'knex'
+import { Database } from '../../configs'
 import { getSeedData } from '../../services/seeder/seeder'
 import { IPurchaseHistory } from '../../types/users.types'
 
@@ -11,10 +12,10 @@ export async function seed(knex: Knex): Promise<void> {
 		const data = await getSeedData<IPurchaseHistory[]>('purchaseHistory.json')
 
 		// Deletes ALL existing entries
-		await knex('PurchaseHistory').del()
+		await knex(`${Database.schema}.PurchaseHistory`).del()
 
 		// Inserts seed entries using batch insert
-		await knex.batchInsert('PurchaseHistory', data, chunkSize)
+		await knex.batchInsert(`${Database.schema}.PurchaseHistory`, data, chunkSize)
 
 		console.log('Seeding purchase history data success')
 	} catch (err) {
