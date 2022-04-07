@@ -7,22 +7,20 @@ import * as fs from 'fs'
  * @returns Promise (TReturn) : Return promised data with TReturn type
  */
 function readJsonFile<TReturn>(filePath: string): Promise<TReturn> {
-	return new Promise((resolve, reject) => {
+	return new Promise((resolve) => {
 		if (!filePath.includes('.json')) {
-			reject('Error! Can only read JSON file in .json')
+			throw new Error('Error! Can only read JSON file in .json')
 		} else {
 			fs.readFile(filePath, 'utf8', (error, jsonString) => {
 				if (error != null) {
-					reject('Error while reading the file!')
-					return
+					throw new Error('Error while reading the file!')
 				}
 
 				try {
 					const returnData: TReturn = JSON.parse(jsonString)
 					resolve(returnData)
 				} catch (err) {
-					reject('Error parsing JSON data from file!')
-					return
+					throw new Error('Error parsing JSON data from file!')
 				}
 			})
 		}
@@ -40,14 +38,14 @@ function readJsonFile<TReturn>(filePath: string): Promise<TReturn> {
  */
 
 function writeJsonFile(filepath: string, filename: string, jsonString: string): Promise<string> {
-	return new Promise((resolve, reject) => {
+	return new Promise((resolve) => {
 		if (!filename.includes('.json')) {
-			reject('Error! Can only save json data into .json file')
+			throw new Error('Error! Can only save json data into .json file')
 		} else {
 			const file = filepath + filename
 			fs.writeFile(file, jsonString, 'utf8', function (err) {
 				if (err) {
-					reject('An error occured while writing JSON Object to File.')
+					throw new Error('An error occured while writing JSON Object to File.')
 				}
 				resolve('Success writing the file!')
 			})
