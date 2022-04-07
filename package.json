@@ -23,11 +23,6 @@
 		"docker-compose-up:build": "docker-compose up -d --build app",
 		"docker:dev": "npm run docker-compose-down; npm run docker-compose-up:dev; docker-compose logs -f app"
 	},
-	"husky": {
-		"hooks": {
-			"pre-commit": "npm run prettier-format && npm run lint"
-		}
-	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/ifindev/buying-frenzy.git"
