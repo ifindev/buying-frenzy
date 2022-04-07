@@ -2,11 +2,14 @@ import { expect } from 'chai'
 import { readJsonFile, writeJsonFile } from '../../../src/services/etl/readWriteJson'
 
 describe('Test read JSON File from a given directory using readJsonFile', () => {
-	it('Return json data successfully if file exists in the file directory', (done) => {
+	it('Read data successfully if file exists in the file directory', (done) => {
+		const filepath = process.cwd() + '/__tests__/services/etl/test.json'
+		const read = () => readJsonFile(filepath)
+		expect(read).to.not.throw()
 		done()
 	})
 
-	it('Return error if file is not exists in the file directory', (done) => {
+	it('Throws error if file is not exists in the file directory', async (done) => {
 		done()
 	})
 })
