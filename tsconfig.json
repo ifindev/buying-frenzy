@@ -6,7 +6,9 @@
 		"rootDir": "./src",
 		"outDir": "./dist",
 		"sourceMap": true,
-		"forceConsistentCasingInFileNames": true
+		"forceConsistentCasingInFileNames": true,
+		"skipLibCheck": true,
+		"allowSyntheticDefaultImports": true
 	},
 	"include": ["src/**/*.ts"],
 	"exclude": ["node_modules", "./dist/"]
