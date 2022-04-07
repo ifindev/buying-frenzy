@@ -2,6 +2,7 @@ import * as dotenv from 'dotenv'
 
 // Set the NODE_ENV to 'development' by default
 process.env.NODE_ENV = process.env.NODE_ENV || 'development'
+const nodeEnv = process.env.NODE_ENV
 
 const envFound = dotenv.config({ path: `${__dirname}/../../.env` })
 if (envFound.error) {
@@ -10,7 +11,12 @@ if (envFound.error) {
 }
 
 export namespace Database {
-	export const schema = 'api'
+	export const schema =
+		nodeEnv === 'development'
+			? process.env.DB_SCHEMA_DEV!
+			: nodeEnv === 'test'
+			? process.env.DB_SCHEMA_TEST!
+			: process.env.DB_SCHEMA_PROD!
 	export const url = process.env.DB_URL
 	export const host = process.env.DB_HOST
 	export const user = process.env.DB_USER
@@ -37,7 +43,8 @@ export namespace KnexCfg {
 			database: Database.database,
 			user: Database.user,
 			password: Database.password,
-			port: Database.port
+			port: Database.port,
+			schema: Database.schema
 		},
 		pool: {
 			min: Database.minPoolSize,
