@@ -1,5 +1,9 @@
 # Buying Frenzy
 
+## Notes
+
+Currently this project is still on hold. I am planning to finish this, but still have several work and personal things to do. :)
+
 ## Description
 
 Buying Frenzy is a backend service and a database for a simple food delivery platform. Currently, the supported API endpoints are for these operations only:
