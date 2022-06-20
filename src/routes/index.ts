@@ -1,1 +1,1 @@
-export { default as menuRouter } from './v1/menu.routes'
+export { default as menuRouter } from './v1/restaurant.routes'

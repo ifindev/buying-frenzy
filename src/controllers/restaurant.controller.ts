@@ -11,6 +11,7 @@ export default class MenuController {
 
 		// check page for pagination
 		if (!page) {
+			ctx.response.status = 400
 			ctx.body = {
 				code: 400,
 				status: 'Pagination Error',
@@ -34,6 +35,7 @@ export default class MenuController {
 
 		// check opening hour to closing hour
 		if (minutesOH > minutesCH) {
+			ctx.response.status = 400
 			ctx.body = {
 				code: 400,
 				status: 'Error',
@@ -47,6 +49,7 @@ export default class MenuController {
 		try {
 			const data = await findOpenRestaurants(minutesOH, minutesCH, dayOfWeek, limit, offset)
 			const totalCount = await getCountOpenRestaurants(minutesOH, minutesCH, dayOfWeek)
+
 			const response = {
 				code: 200,
 				status: 'Success',
@@ -58,8 +61,10 @@ export default class MenuController {
 				}
 			}
 
+			ctx.response.status = 200
 			ctx.body = response
 		} catch (err) {
+			ctx.response.status = 500
 			ctx.body = {
 				code: 500,
 				status: 'Error',
