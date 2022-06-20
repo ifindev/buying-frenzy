@@ -9,7 +9,7 @@
 
 ## Steps
 
-### List All Restaurants that are open at certain time
+### List All Restaurants that are open at certain time [✅]
 
 Steps:
 
@@ -22,7 +22,7 @@ Steps:
 - Join working hours & restaurant tables
 - Return response ok if there is no errors.
 
-### List top y restaurants that have more or less than x number of dishes within a price range, ranked alphabetically
+### List top y restaurants that have more or less than x number of dishes within a price range, ranked alphabetically [✅]
 
 Steps :
 
