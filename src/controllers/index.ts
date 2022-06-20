@@ -1,1 +1,1 @@
-export { default as menu } from './restaurant.controller'
+export { default as restaurant } from './restaurant.controller'
