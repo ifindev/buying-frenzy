@@ -5,7 +5,7 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development'
 const nodeEnv = process.env.NODE_ENV
 
 const envFound = dotenv.config({ path: `${__dirname}/../../.env` })
-if (envFound.error) {
+if (envFound.error && process.env.NODE_ENV !== 'development') {
 	// Crash the whole process
 	throw new Error("⚠️  Couldn't find .env file  ⚠️")
 }
