@@ -61,7 +61,7 @@ This project use Docker for a PostgreSQL database support in local development a
 
 #### Running Docker Locally
 
-After you've installed Docker successfully, go to the root folder and run the following command to startup both application server & PostgreSQL service:
+After you've installed Docker successfully, activate docker on your PC. Then, go to the root folder and run the following command to startup both application server & PostgreSQL service:
 
 ```bash
 npm run docker:dev
