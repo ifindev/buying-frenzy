@@ -1,11 +1,6 @@
-import * as Router from 'koa-router'
 import { menu } from '../../controllers'
-import { ApiVersion } from '../../configs'
+import { v1 as router } from '../../loaders'
 
-const router = new Router({
-	prefix: ApiVersion.v1
-})
-
-router.get('/menus', menu.getAll)
+router.get('/open-restaurants', menu.getOpenRestaurants)
 
 export default router
