@@ -39,6 +39,10 @@ npm install
 
 <br/>
 
+### Rerun ETL Process
+
+To rerun ETL process, run `npm run exec-etl` command on the root folder.
+
 ### Setup `ENV` Variables
 
 After you've installed all the dependencies, rename the `env.example` to `.env` so that all environment variables can be used in the app.
@@ -57,7 +61,7 @@ This project use Docker for a PostgreSQL database support in local development a
 
 #### Running Docker Locally
 
-After you've installed Docker successfully, go to the root folder and run the following command to startup both application server & PostgreSQL service:
+After you've installed Docker successfully, activate docker on your PC. Then, go to the root folder and run the following command to startup both application server & PostgreSQL service:
 
 ```bash
 npm run docker:dev
